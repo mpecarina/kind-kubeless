@@ -70,8 +70,14 @@ https://127.0.0.1:6443/api/v1/namespaces/default/services/get-event:http-functio
 ## install kubeless client
 
 ```sh
-export OS=$(uname -s| tr '[:upper:]' '[:lower:]')
-curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip && \
-  unzip kubeless_$OS-amd64.zip && \
-  sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
+curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.7/kubeless_darwin-amd64.zip && \
+  unzip kubeless_darwin-amd64.zip && \
+  sudo mv bundles/kubeless_darwin-amd64/kubeless /usr/local/bin/
+```
+
+## call function with client
+
+```sh
+kubeless function call get-event
+kubeless function call put-event --data ''
 ```
