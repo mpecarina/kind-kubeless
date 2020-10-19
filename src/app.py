@@ -25,13 +25,11 @@ def put_event(event, context):
 
 def get_event(event, context):
   query_str = event["extensions"]["request"].query_string
-
   try:
     doc_id = dict(parse.parse_qsl(query_str))["id"]
   except KeyError as e:
     print(dumps({"severity": "error", "message": repr(e), "timestamp": datetime.timestamp(datetime.utcnow())}))
     return dumps({"status": "error", "message": "url parameter value required for id"})
-
   try: 
       object_id = ObjectId(doc_id) or None
       collection = get_mongo_collection(DB_NAME, COLLECTION_NAME)

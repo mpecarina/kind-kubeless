@@ -31,21 +31,21 @@ kubectl config current-context
 ## deploy kubeless and mongodb to kind cluster
 
 ```sh
-KUBECONFIG=~/.kube/configs/kind-kind sh scripts/setup_kubeless.sh
-KUBECONFIG=~/.kube/configs/kind-kind kubectl apply -f mongo-deployment.yaml
-KUBECONFIG=~/.kube/configs/kind-kind kubectl apply -f mongo-service.yaml
+sh scripts/setup_kubeless.sh
+kubectl apply -f mongo-deployment.yaml
+kubectl apply -f mongo-service.yaml
 ```
 
 ## deploy new kubeless function
 
 ```sh
-KUBECONFIG=~/.kube/configs/kind-kind sh scripts/deploy.sh
+sh scripts/deploy.sh
 ```
 
 ## update existing kubeless function
 
 ```sh
-KUBECONFIG=~/.kube/configs/kind-kind sh scripts/update.sh
+sh scripts/update.sh
 ```
 
 ## give anonymous users the cluster-admin role
@@ -66,3 +66,12 @@ data inserted successfully with id: 5f45e104fb7f497571a4113b
 ## call get function from web browser
 
 https://127.0.0.1:6443/api/v1/namespaces/default/services/get-event:http-function-port/proxy/?id=5f45e104fb7f497571a4113b
+
+## install kubeless client
+
+```sh
+export OS=$(uname -s| tr '[:upper:]' '[:lower:]')
+curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip && \
+  unzip kubeless_$OS-amd64.zip && \
+  sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
+```
