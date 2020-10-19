@@ -6,6 +6,14 @@
 brew install kind
 ```
 
+## install kubeless client
+
+```sh
+curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.7/kubeless_darwin-amd64.zip && \
+  unzip kubeless_darwin-amd64.zip && \
+  sudo mv bundles/kubeless_darwin-amd64/kubeless /usr/local/bin/
+```
+
 ## install mongodb client
 
 ```sh
@@ -66,14 +74,6 @@ data inserted successfully with id: 5f45e104fb7f497571a4113b
 ## call get function from web browser
 
 https://127.0.0.1:6443/api/v1/namespaces/default/services/get-event:http-function-port/proxy/?id=5f45e104fb7f497571a4113b
-
-## install kubeless client
-
-```sh
-curl -OL https://github.com/kubeless/kubeless/releases/download/v1.0.7/kubeless_darwin-amd64.zip && \
-  unzip kubeless_darwin-amd64.zip && \
-  sudo mv bundles/kubeless_darwin-amd64/kubeless /usr/local/bin/
-```
 
 ## call function with client
 
